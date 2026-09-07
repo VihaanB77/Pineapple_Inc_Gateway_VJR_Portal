@@ -1,0 +1,6 @@
+{
+  "name": "Pineapple Inc. Gateway",
+  "description": "Pineapple Inc. password-protected gateway to access the confidential link.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
