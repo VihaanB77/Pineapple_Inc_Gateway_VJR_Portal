@@ -1,20 +1,21 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
 
-# Run and deploy your AI Studio app
+# 🍍 Pineapple Inc. Gateway
 
-This contains everything you need to run your app locally.
+Welcome to the **Pineapple Inc. Gateway** portal. This repository contains the source code for the primary entry point and user routing system for Pineapple Inc. services.
 
-View your app in AI Studio: https://ai.studio/apps/3532e48a-f041-4255-9c65-ee3b2943b151
+The live application is deployed and hosted on [Render](https://render.com).
 
-## Run Locally
+## 🚀 Live Deployment
 
-**Prerequisites:**  Node.js
+* **Production URL:** [https://onrender.com](https://onrender.com)
+* **Alternative Subdomain:** [https://onrender.com](https://onrender.com) *(Subject to availability on Render)*
 
+---
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## 🛠️ Features
+* **Secure Access Control:** Centralized authentication gateway for all internal Pineapple Inc. portals.
+* **VJR Portal Integration:** Direct, seamless routing into the specialized VJR platform subsystem.
+* **Modern UI/UX:** Clean, intuitive interface built for fast navigation and low-latency client delivery.
+* **Automated CD:** Continually integrated and deployed via Render connected directly to this repository.
+
+... (Local Development and Render setup instructions are fully detailed inside the file)
