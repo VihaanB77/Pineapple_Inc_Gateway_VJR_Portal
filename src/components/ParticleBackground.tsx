@@ -13,25 +13,7 @@ interface Particle {
   color: string;
 }
 
-interface ParticleBackgroundProps {
-  themeKey: string;
-}
-
-const hexToRgbaPrefix = (hex: string) => {
-  const value = hex.trim().replace('#', '');
-
-  if (value.length !== 6) {
-    return 'rgba(158, 202, 255, ';
-  }
-
-  const red = parseInt(value.slice(0, 2), 16);
-  const green = parseInt(value.slice(2, 4), 16);
-  const blue = parseInt(value.slice(4, 6), 16);
-
-  return `rgba(${red}, ${green}, ${blue}, `;
-};
-
-export const ParticleBackground: React.FC<ParticleBackgroundProps> = ({ themeKey }) => {
+export const ParticleBackground: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -49,15 +31,11 @@ export const ParticleBackground: React.FC<ParticleBackgroundProps> = ({ themeKey
     let particles: Particle[] = [];
     let resizeTimeout: NodeJS.Timeout;
 
-    const styles = getComputedStyle(container);
     const particleColors = [
-      styles.getPropertyValue('--md-ref-palette-primary-70').trim(),
-      styles.getPropertyValue('--md-ref-palette-secondary-60').trim(),
-      styles.getPropertyValue('--md-ref-palette-tertiary-70').trim(),
-    ].map(hexToRgbaPrefix);
-    const lineColor = hexToRgbaPrefix(
-      styles.getPropertyValue('--md-sys-color-outline-variant').trim() || '#9ecaff',
-    );
+      'rgba(158, 202, 255, ', // #9ecaff cyan/light blue
+      'rgba(110, 160, 225, ', // mid soft blue
+      'rgba(80, 120, 185, ',  // deeper slate blue
+    ];
 
     const createParticles = (w: number, h: number) => {
       // Calculate particle density: ~1 particle per 25,000 px^2, clamped between 25 and 65
@@ -92,7 +70,6 @@ export const ParticleBackground: React.FC<ParticleBackgroundProps> = ({ themeKey
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
 
-      ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.scale(dpr, dpr);
       particles = createParticles(width, height);
     };
@@ -161,7 +138,7 @@ export const ParticleBackground: React.FC<ParticleBackgroundProps> = ({ themeKey
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `${lineColor}${lineAlpha})`;
+            ctx.strokeStyle = `rgba(158, 202, 255, ${lineAlpha})`;
             ctx.lineWidth = 0.75;
             ctx.stroke();
           }
@@ -178,7 +155,7 @@ export const ParticleBackground: React.FC<ParticleBackgroundProps> = ({ themeKey
       clearTimeout(resizeTimeout);
       observer.disconnect();
     };
-  }, [themeKey]);
+  }, []);
 
   return (
     <div
