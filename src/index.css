@@ -1,1 +1,492 @@
 @import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--md-sys-color-background, #111318);
+  color: var(--md-sys-color-on-background, #f1efe8);
+  font-family: inherit;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--md-sys-color-primary) 72%, transparent);
+  color: var(--md-sys-color-on-primary);
+}
+
+.material-app {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, color-mix(in srgb, var(--md-ref-palette-tertiary-60) 18%, transparent) 0, transparent 28rem),
+    radial-gradient(circle at top right, color-mix(in srgb, var(--md-ref-palette-primary-70) 18%, transparent) 0, transparent 30rem),
+    linear-gradient(180deg, var(--md-ref-palette-neutral-6) 0%, var(--md-ref-palette-neutral-4) 100%);
+}
+
+.material-shell {
+  width: min(100% - 1.5rem, 1120px);
+  margin-inline: auto;
+}
+
+.material-top-bar,
+.material-footer {
+  position: relative;
+  z-index: 10;
+  border-color: color-mix(in srgb, var(--md-sys-color-outline-variant) 92%, transparent);
+  background: color-mix(in srgb, var(--md-sys-color-surface-container-low) 78%, transparent);
+  backdrop-filter: blur(18px);
+}
+
+.material-top-bar {
+  border-bottom-width: 1px;
+}
+
+.material-footer {
+  border-top-width: 1px;
+}
+
+.material-panel,
+.material-panel-muted,
+.material-outline-panel,
+.material-dialog {
+  border-radius: var(--material-radius-xl);
+  border: 1px solid color-mix(in srgb, var(--md-sys-color-outline-variant) 92%, transparent);
+  box-shadow: var(--material-shadow-2);
+}
+
+.material-panel {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--md-sys-color-surface-container-high) 95%, transparent) 0%,
+      color-mix(in srgb, var(--md-sys-color-surface-container) 96%, transparent) 100%
+    );
+}
+
+.material-panel-muted {
+  background: color-mix(in srgb, var(--md-sys-color-surface-container-high) 84%, transparent);
+}
+
+.material-outline-panel {
+  background: color-mix(in srgb, var(--md-sys-color-surface-container-low) 68%, transparent);
+}
+
+.material-pill,
+.material-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--md-sys-color-outline-variant) 88%, transparent);
+  background: color-mix(in srgb, var(--md-sys-color-secondary-container) 44%, transparent);
+  color: var(--md-sys-color-on-secondary-container);
+}
+
+.material-pill {
+  padding: 0.5rem 0.875rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.material-chip {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.material-eyebrow {
+  margin: 0;
+  color: var(--md-sys-color-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.material-display {
+  margin: 0;
+  color: var(--md-sys-color-on-surface);
+  font-size: clamp(2rem, 5vw, 3.75rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+}
+
+.material-title {
+  margin: 0;
+  color: var(--md-sys-color-on-surface);
+  font-size: clamp(1.375rem, 2vw, 1.875rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  font-weight: 650;
+}
+
+.material-body {
+  margin: 0;
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 0.975rem;
+  line-height: 1.65;
+}
+
+.material-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.material-field {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0 1rem;
+  min-height: 3.6rem;
+  border-radius: var(--material-radius-md);
+  border: 1px solid color-mix(in srgb, var(--md-sys-color-outline) 68%, transparent);
+  background: color-mix(in srgb, var(--md-sys-color-surface-container-low) 88%, transparent);
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+
+.material-field:focus-within {
+  border-color: var(--md-sys-color-primary);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--md-sys-color-primary) 18%, transparent);
+}
+
+.material-field[data-invalid="true"] {
+  border-color: var(--md-sys-color-error);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--md-sys-color-error) 16%, transparent);
+}
+
+.material-input,
+.material-link-field {
+  width: 100%;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--md-sys-color-on-surface);
+}
+
+.material-input::placeholder,
+.material-link-field::placeholder {
+  color: color-mix(in srgb, var(--md-sys-color-on-surface-variant) 70%, transparent);
+}
+
+.material-link-field {
+  font-family:
+    "SFMono-Regular", SFMono-Regular, ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono",
+    monospace;
+  font-size: 0.875rem;
+}
+
+.material-filled-button,
+.material-tonal-button,
+.material-text-button,
+.material-danger-button,
+.material-fab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  border: 0;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease,
+    color 160ms ease,
+    border-color 160ms ease;
+}
+
+.material-filled-button,
+.material-tonal-button,
+.material-danger-button {
+  min-height: 3.5rem;
+  padding: 0 1.25rem;
+  border-radius: 1.25rem;
+  font-weight: 700;
+}
+
+.material-filled-button {
+  background: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  box-shadow: var(--material-shadow-1);
+}
+
+.material-filled-button:hover,
+.material-tonal-button:hover,
+.material-danger-button:hover,
+.material-fab:hover,
+.material-text-button:hover {
+  transform: translateY(-1px);
+}
+
+.material-filled-button:hover {
+  background: color-mix(in srgb, var(--md-sys-color-primary) 88%, white);
+}
+
+.material-tonal-button {
+  border: 1px solid color-mix(in srgb, var(--md-sys-color-outline-variant) 86%, transparent);
+  background: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+}
+
+.material-tonal-button:hover {
+  background: color-mix(in srgb, var(--md-sys-color-secondary-container) 88%, white);
+}
+
+.material-danger-button {
+  background: var(--md-sys-color-error-container);
+  color: var(--md-sys-color-on-error-container);
+}
+
+.material-danger-button:hover {
+  background: color-mix(in srgb, var(--md-sys-color-error-container) 88%, white);
+}
+
+.material-text-button {
+  min-height: 2.75rem;
+  padding: 0 0.875rem;
+  border-radius: 999px;
+  color: var(--md-sys-color-primary);
+  font-weight: 700;
+}
+
+.material-text-button:hover {
+  background: color-mix(in srgb, var(--md-sys-color-primary) 12%, transparent);
+}
+
+.material-filled-button:disabled,
+.material-tonal-button:disabled,
+.material-danger-button:disabled,
+.material-text-button:disabled,
+.material-fab:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+}
+
+.material-progress-track {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 999px;
+  height: 0.625rem;
+  background: color-mix(in srgb, var(--md-sys-color-surface-container-highest) 72%, transparent);
+}
+
+.material-progress-bar {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    var(--md-sys-color-primary) 0%,
+    var(--md-sys-color-tertiary) 100%
+  );
+  transition: width 200ms ease;
+}
+
+.material-list-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.1rem;
+  border-radius: var(--material-radius-sm);
+  border: 1px solid color-mix(in srgb, var(--md-sys-color-outline-variant) 78%, transparent);
+  background: color-mix(in srgb, var(--md-sys-color-surface-container-low) 86%, transparent);
+}
+
+.material-stat-card {
+  padding: 1rem 1.1rem;
+  border-radius: var(--material-radius-sm);
+  border: 1px solid color-mix(in srgb, var(--md-sys-color-outline-variant) 76%, transparent);
+  background: color-mix(in srgb, var(--md-sys-color-surface-container-high) 86%, transparent);
+  box-shadow: var(--material-shadow-1);
+}
+
+.material-dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: color-mix(in srgb, var(--md-ref-palette-neutral-4) 76%, transparent);
+  backdrop-filter: blur(18px);
+}
+
+.material-dialog {
+  width: min(100%, 840px);
+  max-height: min(90vh, 920px);
+  overflow: hidden;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--md-sys-color-surface-container-high) 96%, transparent) 0%,
+      color-mix(in srgb, var(--md-sys-color-surface-container-low) 98%, transparent) 100%
+    );
+}
+
+.material-avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 34%;
+  padding: 0.25rem;
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--md-sys-color-primary-container) 88%, transparent),
+      color-mix(in srgb, var(--md-sys-color-tertiary-container) 92%, transparent)
+    );
+  box-shadow: var(--material-shadow-1);
+}
+
+.material-avatar__halo {
+  position: absolute;
+  inset: -0.2rem;
+  border-radius: 38%;
+  border: 1px solid color-mix(in srgb, var(--md-sys-color-primary) 44%, transparent);
+  opacity: 0.7;
+}
+
+.material-avatar__core {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 30%;
+  background:
+    radial-gradient(circle at top, color-mix(in srgb, var(--md-ref-palette-primary-90) 24%, transparent), transparent 58%),
+    color-mix(in srgb, var(--md-sys-color-surface-container-highest) 82%, transparent);
+  color: var(--md-sys-color-on-surface);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.material-avatar__badge {
+  position: absolute;
+  right: -0.2rem;
+  bottom: -0.2rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  border: 2px solid var(--md-sys-color-surface-container-high);
+  background: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  box-shadow: var(--material-shadow-1);
+}
+
+.material-floating-stack {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.875rem;
+}
+
+.material-fab {
+  min-height: 3.5rem;
+  border-radius: 1.35rem;
+  padding: 0 1.15rem;
+  box-shadow: var(--material-shadow-3);
+}
+
+.material-fab-primary {
+  background: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+}
+
+.material-fab-secondary {
+  background: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+}
+
+.material-fab-danger {
+  background: var(--md-sys-color-error-container);
+  color: var(--md-sys-color-on-error-container);
+}
+
+.material-mini-fab {
+  width: 3.5rem;
+  padding: 0;
+}
+
+.material-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--md-sys-color-outline) 60%, transparent) transparent;
+}
+
+.material-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+.material-scroll::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--md-sys-color-outline) 56%, transparent);
+}
+
+.material-status-dot {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 999px;
+  background: var(--md-sys-color-tertiary);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--md-sys-color-tertiary) 18%, transparent);
+}
+
+@media (min-width: 640px) {
+  .material-shell {
+    width: min(100% - 2rem, 1120px);
+  }
+
+  .material-floating-stack {
+    right: max(1.5rem, env(safe-area-inset-right));
+    bottom: max(1.5rem, env(safe-area-inset-bottom));
+  }
+}
